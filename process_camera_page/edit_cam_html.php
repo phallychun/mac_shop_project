@@ -24,10 +24,10 @@
                 $cam_data = selectOneProduct($cam_id);
                 foreach($cam_data as $camera):
             ?>
-            <form action="edit_cam_model.php" method="post" class="p-2">
+            <form action="edit_cam_model.php" method="post" class="p-2" enctype="multipart/form-data">
                 <input type="hidden"  name="cam_id" value="<?=$camera['productId']?>">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Profile" name="profile" value="<?=$camera['profile']?>">
+                    <input type="text" class="form-control" placeholder="Profile" name="profile" value="assets/post_images/<?= $phone['profile'] ?>">
                 </div>
                 <div class="form-group d-flex">
                     <input type="text" class="form-control" placeholder="Name" name="name" value="<?=$camera['productName']?>">

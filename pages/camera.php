@@ -32,7 +32,7 @@
         </div>
         <div class="card-body text-center">
             <div class='pb-5'>
-                <img class="card-img-top" src="<?=$camera['profile']?>" alt="Card image cap">
+                <img class="card-img-top" src="assets/post_images/<?= $camera['profile'] ?>" alt="Card image cap">
             </div>
             <h5 class="card-title text-primary"><?=$camera['productName']?></h5>
             <p class="card-text text-primary">Year:  <strong><?=$camera['year']?></strong> </p>

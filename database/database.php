@@ -2,6 +2,7 @@
 
 <?php
 
+session_start();
 // CALL DATABASE FUNCTION===========================================================================================================
 function database(){
     return new mysqli('localhost', 'root', '', 'computer_inventory');
@@ -23,14 +24,44 @@ function deleteProduct($product_id){
 // CREATE PRODUCTS FUNCTION============================================================================================================
 
 function createProduct($product_value){
+
     $name = $product_value['name'];
     $year = $product_value['year'];
     $price = $product_value['price'];
-    $profile = $product_value['profile'];
     $category = $product_value['category'];
-    return database()->query("INSERT INTO products(productName,year,price,profile,categoryId) VALUES('$name','$year','$price','$profile', $category)");
+
+    // image------------------------------------------------------------------------------------------------
+    $imageName = $_FILES['profile']['name'];
+    $imagTmp = $_FILES['profile']['tmp_name'];
+    $imageSize = $_FILES['profile']['size'];
+    $error = $_FILES['profile']['error'];
+
+   
+    if($imageSize > 1250000){
+        header('location: ../index.php?page=home');
+        $_SESSION['message'] = "Big size";
+        
+    }else{
+            $extension = pathinfo($imageName, PATHINFO_EXTENSION);
+            $extensionLocal = strtolower($extension);
+
+            $allowExtension = array('jpg', 'jpeg', 'png');
+            if(in_array($extensionLocal, $allowExtension)) {
+                $newImageName = uniqid('post-', true) . '.' . $extensionLocal;
+                $folderImage = '../assets/post_images/'. $newImageName;
+                move_uploaded_file($imagTmp, $folderImage);
+    
+                return database()->query("INSERT INTO products(productName,year,price,profile,categoryId) VALUES('$name','$year','$price','$newImageName', $category)");
+            }else {
+                header('location: ../index.php?page=home');
+            }
+    }
+    
    
 }
+
+
+
 
 //  COMPUTER FUNCTIONS =============================================================================================================
 
@@ -95,18 +126,13 @@ function updateCam($cam_value){
 
 // // INFORMATION FUNCTIONS USER REGISTER AND LOGIN=============================================================================================
 
-session_start();
-// $_SESSION["user_register"] = '';
-// $_SESSION["user_login"] = '';
-// Register......
-
 function user_register($users){
    
     
     $user_not_found = true;
     $username = strtolower($users['username']);
     $email = $users['email'];
-    $password = $users['password_1'];
+    $password = password_hash($users['password_1'], PASSWORD_DEFAULT);
     $roleId = 2;
 
     // put $username into register_username to manage uer
@@ -144,9 +170,9 @@ function login_set($user_value){
     $userSet = database()->query("SELECT * FROM users");
     
     foreach($userSet as $user){
-        $old_password = $user['password'];
+
         $username_log = $user['username'];
-        $verified = ($old_password === $new_password && $username_log === $username);
+        $verified = (password_verify($new_password, $user['password']) && $username_log === $username);
         if($verified){
             $checkFound = true;
         } 

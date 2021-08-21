@@ -4,6 +4,8 @@
     require_once('./partial/header.php');
     require_once('./partial/navbar.php'); 
     require_once('./database/database.php');
+
+    
     //check to set style if admin show if not hide
     $divStyle=''; 
     $adminFound = admin_user();
@@ -34,7 +36,7 @@
         </div>
         <div class="card-body text-center">
             <div class='pb-5'>
-                <img class="card-img-top" src="<?=$pc['profile']?>" alt="Card image cap">
+                <img class="card-img-top" src="assets/post_images/<?= $pc['profile'] ?>" alt="Card image cap">
             </div>
             <h5 class="card-title text-primary"><?=$pc['productName']?></h5>
             <p class="card-text text-primary">Version: <?=$pc['year']?></p>

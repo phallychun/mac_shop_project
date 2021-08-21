@@ -36,7 +36,7 @@
         </div>
         <div class="card-body text-center">
             <div class='pb-5'>
-                <img class="card-img-top" src="<?=$phone['profile']?>" alt="Card image cap">
+                <img class="card-img-top" src="assets/post_images/<?= $phone['profile'] ?>" alt="Card image cap">
             </div>
             <h5 class="card-title text-primary"><?=$phone['productName']?></h5> 
             <p class="card-text text-primary">Version: <?=$phone['year']?></p>

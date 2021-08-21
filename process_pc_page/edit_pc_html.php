@@ -24,7 +24,7 @@
                 $pC_data = selectOneProduct($pc_id);
                 foreach($pC_data as $pc):
             ?>
-            <form action="edit_pc_model.php" method="post" class="p-2">
+            <form action="edit_pc_model.php" method="post" class="p-2" enctype="multipart/form-data">
                 <input type="hidden"  name="pc_id" value="<?=$pc['productId']?>">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Profile" name="profile" value="<?=$pc['profile']?>">

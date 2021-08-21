@@ -1,6 +1,12 @@
 
 
-<?php require_once('../partial/header.php'); ?>
+<?php 
+    require_once('../partial/header.php'); 
+    session_start();
+    if(isset($_SESSION['message'])){
+        echo $_SESSION['message'];
+    }
+?>
 
     <div class='d-flex justify-content-between' style="background-color: #d5d6eb; height:100vh">
         <div class='w-50' style="background: linear-gradient(107deg,#085728 0%, #082a57 80%); height:100%;" >
@@ -20,9 +26,9 @@
             <a href="../index.php?page=computer" class='btn btn-danger float-right'> Cancel</a>
             <img src="../assets/images/logo_lerg.png" alt="" style="width:170px; height:190px;  margin-left: 180px;">
 
-            <form action="create_pc_model.php" method="post" class="p-2">
+            <form action="create_pc_model.php" method="post" class="p-2" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Profile" name="profile">
+                <input type="file" class="form-control" placeholder="Profile" name="profile" >
                 </div>
                 <div class="form-group d-flex">
                     <input type="text" class="form-control " placeholder="Name" name="name">

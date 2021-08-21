@@ -1,7 +1,6 @@
 
 <?php 
     require_once('../partial/header.php');
-    require_once('../partial/navbar.php');
     require_once("../database/database.php");
 
     $category = slectTableCategory();
@@ -17,7 +16,8 @@
     }
 
 ?>
-<div class='p-5' style=" margin-top:50px;">
+<div class='p-5'>
+    <a href="http://localhost/php_db_project/mac_shop_project/index.php?page=logout" class='btn btn-danger  text-white mr-2 float-right'>Logout=></a>
     <form method="POST" action="" class="form-group col-md-4 mt-2">
         <select name="table" onchange="this.form.submit()">
             <option value="" disabled selected>--Select Table--</option>
@@ -29,7 +29,7 @@
         
         
     <div class='text-center' >
-        <h2 class='text-primary'><strong>System Manger</strong> </h2>
+        <h2 class='text-primary'><strong>System Manager</strong> </h2>
     </div>
     <?php if($selected === 'product'): ?>
         <div class='float-right p-4'>
@@ -91,8 +91,8 @@
                     <td><?= $user_row['password'] ?></td>
                     <td><?= $user_row['roleId'] ?></td>
                     <td>
-                        <div class='float-right'>
-                            <a href="" class='btn btn-success'>Edit</a>
+                        <div class='d-flex float-right'>
+                            <a href="" class='btn btn-success mr-2'>Edit</a>
                             <a href="" class='btn btn-danger'>Remove</a>
                         </div>
                     </td>
@@ -118,8 +118,8 @@
                     <td><?= $cate_row['categoryId'] ?></td>
                     <td><?= $cate_row['categoryName'] ?></td>
                     <td>
-                        <div class='float-right'>
-                            <a href="" class='btn btn-success'>Edit</a>
+                        <div class='d-flex float-right'>
+                            <a href="" class='btn btn-success mr-2'>Edit</a>
                             <a href="" class='btn btn-danger'>Remove</a>
                         </div>
                     </td>

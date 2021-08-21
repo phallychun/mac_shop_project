@@ -95,15 +95,23 @@ function updateCam($cam_value){
 
 // // INFORMATION FUNCTIONS USER REGISTER AND LOGIN=============================================================================================
 
+session_start();
+// $_SESSION["user_register"] = '';
+// $_SESSION["user_login"] = '';
 // Register......
+
 function user_register($users){
+   
     
     $user_not_found = true;
-    $username = $users['username'];
+    $username = strtolower($users['username']);
     $email = $users['email'];
-    $password_1 = $users['password_1'];
+    $password = $users['password_1'];
     $roleId = 2;
-    $password = password_hash( $password_1,PASSWORD_DEFAULT);
+
+    // put $username into register_username to manage uer
+    $_SESSION["user_register"] = $username;
+
     // select data from table users make sure the user already exist
     $query_in_table = database()->query("SELECT * FROM users");
     
@@ -121,23 +129,65 @@ function user_register($users){
     }
 }
 
+
 // User login.....
 function login_set($user_value){
+   
+    $username = strtolower($user_value['username']);
+    $new_password = $user_value['password'];
 
-    $username = $user_value['username'];
-    $password = $user_value['password'];
+    // put the username into login_username to manag user
+    $_SESSION["user_login"] = $username;
+
+    //variable to checked
     $checkFound = false;
-
     $userSet = database()->query("SELECT * FROM users");
     
     foreach($userSet as $user){
-        $hash = $user['password'];
+        $old_password = $user['password'];
         $username_log = $user['username'];
-        $verify = password_verify($password,$hash && $username_log === $username);
-        if($verify) {
+        $verified = ($old_password === $new_password && $username_log === $username);
+        if($verified){
             $checkFound = true;
         } 
     }
 
     return $checkFound;
+}
+
+
+// MANAGE USER ADMIN ============================================================================================================
+
+function admin_user(){
+   
+    $role_set =  database()->query("SELECT username FROM users WHERE roleId = 1");
+    $user_found = false;
+
+    // print_r($role_set);
+    foreach($role_set as $role){
+        if($role['username'] === $_SESSION["user_login"] || $role['username'] === $_SESSION["user_register"]){
+            $user_found = true;
+        }
+    }
+    return $user_found;
+}
+
+
+
+// INFORMATION SYSTEM ADMINISTRATION USER======================================================================================
+
+function system_manager(){
+
+}
+
+function selectTableProduct(){
+    return database()->query("SELECT * FROM products ORDER BY productId DESC");
+}
+
+function slectTableCategory(){
+    return database()->query("SELECT * FROM categories ORDER BY categoryId DESC");
+}
+
+function slectTableUser(){
+    return database()->query("SELECT * FROM users ORDER BY userId DESC");
 }

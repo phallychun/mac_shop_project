@@ -11,7 +11,7 @@
                 
                 $isUserFound = login_set($_POST);
                 if($isUserFound){
-                    header('Location: ../index.php?page=home');
+                    header('Location: http://localhost/php_db_project/mac_shop_project/index.php?page=home#');
                     $mess_sucess = "Your password and username are verify sucessfuly";
                 }else{
                     $mess_error = "password or username incorrect! Please try again";

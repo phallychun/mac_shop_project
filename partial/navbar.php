@@ -1,8 +1,4 @@
 
-<!-- <picture class='' style='width: 10px; '>
-    <source srcset="" type="image/svg+xml">
-    <img src="./assets/images/logo.png" class="rounded float-left" alt="">
-</picture> -->
 
 
   <ul class="nav justify-content-end p-1 fixed-top" style='background: linear-gradient(107deg,#407555 0%, #012b52 80%); opacity: 0.8;'>

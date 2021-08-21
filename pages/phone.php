@@ -3,19 +3,34 @@
 <?php 
     require_once('./partial/header.php');
     require_once('./partial/navbar.php'); 
+    require_once('./database/database.php');
+
+    //check to set style if admin show if not hide
+    $divStyle=''; 
+    $adminFound = admin_user();
+    // add condition
+    if($adminFound){
+        $divStyle='style="display:block;"';
+    }else{ 
+        $divStyle='style="display:none;"';
+    }
+
 ?>
-<div class='container d-flex justify-content-between  pt-5 mt-5 '>
-    <h2>Please check for your favorite. Which iphon is right for you?</h2>
-    <a href="./process_phone_page/create_phone_html.php" class="btn btn-primary">Add Cart+</a>
+<div class='container d-flex justify-content-between  pt-5 mt-5 float-right'>
+    <h2>Please check for your favorite.Which one is right for you?</h2>
+    <a href="./process_phone_page/create_phone_html.php" class="btn btn-primary" <?=$divStyle ?>>Add Cart+</a>
+    <a href="http://localhost/php_db_project/mac_shop_project/pages/admin_user.php" class="btn btn-success" <?=$divStyle ?>>System=></a>
 </div>
 <div class='container d-flex justify-content-around pt-5 flex-wrap'>
     <?php 
-        require_once('./database/database.php');
+        
+        // select all computers
         $phones = selectAllPhone();
         foreach($phones as $phone):
     ?>
     <div class="card mb-3 border border-primary" style="max-width: 18rem;">
-        <div class="card-header">
+        <!-- Set style to manage user admin -->
+        <div class="card-header"  <?=$divStyle ?>>
             <a href="./process_phone_page/edit_phone_html.php?phone_id=<?=$phone['productId']?>" class="rounded btn btn-primary"><small>Edit</small></a>
             <a href="./process_phone_page/delete_phone.php?phone_id=<?=$phone['productId']?>" class="rounded btn btn-danger "><small>Remove</small></a>
         </div>

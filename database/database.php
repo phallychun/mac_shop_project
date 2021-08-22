@@ -2,18 +2,14 @@
 
 <?php
 
-session_start();
+
 // CALL DATABASE FUNCTION===========================================================================================================
 function database(){
     return new mysqli('localhost', 'root', '', 'computer_inventory');
 
 }
 
-//  SELECT PRODUCT =============================================================================================================
 
-function selectOneProduct($product_id){
-    return database()->query("SELECT * FROM products WHERE productId = $product_id");
-}
 
 //  DELTE PRODUCTS FUNCTION========================================================================================================
 
@@ -60,7 +56,11 @@ function createProduct($product_value){
    
 }
 
+//  SELECT PRODUCT =============================================================================================================
 
+function selectOneProduct($product_id){
+    return database()->query("SELECT * FROM products WHERE productId = $product_id");
+}
 
 
 //  COMPUTER FUNCTIONS =============================================================================================================
@@ -123,20 +123,15 @@ function updateCam($cam_value){
 }
 
 
-
 // // INFORMATION FUNCTIONS USER REGISTER AND LOGIN=============================================================================================
 
 function user_register($users){
    
-    
     $user_not_found = true;
     $username = strtolower($users['username']);
     $email = $users['email'];
     $password = password_hash($users['password_1'], PASSWORD_DEFAULT);
     $roleId = 2;
-
-    // put $username into register_username to manage uer
-    $_SESSION["user_register"] = $username;
 
     // select data from table users make sure the user already exist
     $query_in_table = database()->query("SELECT * FROM users");
@@ -159,11 +154,12 @@ function user_register($users){
 // User login.....
 function login_set($user_value){
    
-    $username = strtolower($user_value['username']);
+    $new_username = strtolower($user_value['username']);
     $new_password = $user_value['password'];
 
     // put the username into login_username to manag user
-    $_SESSION["user_login"] = $username;
+    session_start();
+    $_SESSION["user_login"] = $new_username;
 
     //variable to checked
     $checkFound = false;
@@ -172,7 +168,7 @@ function login_set($user_value){
     foreach($userSet as $user){
 
         $username_log = $user['username'];
-        $verified = (password_verify($new_password, $user['password']) && $username_log === $username);
+        $verified = (password_verify($new_password, $user['password']) && $username_log === $new_username);
         if($verified){
             $checkFound = true;
         } 
@@ -180,24 +176,6 @@ function login_set($user_value){
 
     return $checkFound;
 }
-
-
-// MANAGE USER ADMIN ============================================================================================================
-
-function admin_user(){
-   
-    $role_set =  database()->query("SELECT username FROM users WHERE roleId = 1");
-    $user_found = false;
-
-    // print_r($role_set);
-    foreach($role_set as $role){
-        if($role['username'] === $_SESSION["user_login"] || $role['username'] === $_SESSION["user_register"]){
-            $user_found = true;
-        }
-    }
-    return $user_found;
-}
-
 
 
 // INFORMATION SYSTEM ADMINISTRATION USER======================================================================================
@@ -217,3 +195,19 @@ function slectTableCategory(){
 function slectTableUser(){
     return database()->query("SELECT * FROM users ORDER BY userId DESC");
 }
+
+// UPDATE PRODUCTS IN SYSTEM------------------------------
+function updateProduct($product_value){
+    $name = $product_value['name'];
+    $year = $product_value['year'];
+    $price = $product_value['price'];
+    $profile = $product_value['profile'];
+    $productId =$product_value['pro_id'];
+    $category = $product_value['category'];
+
+    return database()->query("UPDATE products SET productName='$name',year='$year',price='$price',profile='$profile',categoryId=$category WHERE productId = $productId");
+}  
+
+
+
+

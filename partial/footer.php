@@ -16,7 +16,7 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="facbook.com" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"
         ><i class="fa fa-facebook-official" aria-hidden="true"></i>
     </a>
 

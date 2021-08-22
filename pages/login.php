@@ -1,7 +1,7 @@
 
 <?php 
-    require_once('./partial/header.php');
-    require_once('./database/database.php');
+    require_once('../partial/header.php');
+    require_once('../database/database.php');
 
     $mess_error = "";
     $mess_sucess ="";
@@ -26,6 +26,7 @@
 <div class="h-100 d-flex justify-content-center" style='background: linear-gradient(90deg,#141769 0%, #851470 40%, #335e33 80%); opacity: 0.9;'>
     <div class="col-md-6 col-xl-5 mb-5 p-5 " >
         <!--Form-->
+        <a href="../index.php" class='btn btn-success float-left'><=Back</a>
         <h2 class='display-5 text-white text-center p-4'>Are you exist your account? Please Login</h2>
         <form action="#" method="post">
             <div class="card" data-wow-delay="0.3s">

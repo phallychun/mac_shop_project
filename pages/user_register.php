@@ -7,7 +7,7 @@
   <div style='background: linear-gradient(90deg,#1b3e8f 0%, #0c0e4d 80%); opacity: 0.9;'>
     <nav class="navbar navbar-expand-lg border-bottom " style="opacity: 0.9;">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand text-warning" href="#">
           <strong>MAC SHOP</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +30,13 @@
         <!--Grid row-->
         <div class="row mt-5">
           <!--Grid column-->
-          <div class="col-md-6 mt-5 text-primary text-center text-md-left ">
+          <div class="col-md-6 mt-5 text-warning text-center text-md-left ">
             <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
             <hr class="bg-light" data-wow-delay="0.3s">
             <h6 class="mb-3 text-light" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga
             nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea
             dolor molestiae, quisquam iste, maiores. Nulla.</h6>
-            <a href="http://localhost/php_db_project/mac_shop_project/index.php?page=logout" class="btn btn-primary" data-wow-delay="0.3s" class="btn btn-primary">Signin</a>
+            <a href="http://localhost/php_db_project/mac_shop_project/pages/login.php" class="btn btn-warning" data-wow-delay="0.3s" class="btn btn-primary">Signin</a>
             <img src="../assets/images/logo_lerg.png" alt="" class='w-25 ml-5' >
           </div>
 
@@ -72,7 +72,7 @@
                       // add datas of register to database
                       $isRegister = user_register($_POST);
                       if($isRegister){
-                        header("Location: ./index.php?page=home");
+                        header("Location: http://localhost/php_db_project/mac_shop_project/pages/login.php");
                         $msg = "Sucessfuly";
                       }else{
                         $msg = "Your account already exist. Please Login";

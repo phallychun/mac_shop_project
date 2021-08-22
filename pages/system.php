@@ -17,10 +17,12 @@
 
 ?>
 <div class='p-5'>
-    <a href="http://localhost/php_db_project/mac_shop_project/index.php?page=logout" class='btn btn-danger  text-white mr-2 float-right'>Logout=></a>
+    
+    <a href="http://localhost/php_db_project/mac_shop_project/pages/login.php" class='btn btn-danger  text-white mr-2 float-right'>Logout=></a>
+    <a href="../index.php?page=home" class='btn btn-primary  text-white mr-2 float-left'><=Back</a>
     <form method="POST" action="" class="form-group col-md-4 mt-2">
         <select name="table" onchange="this.form.submit()">
-            <option value="" disabled selected>--Select Table--</option>
+            <option value="#" disabled selected>--Select Table--</option>
             <option value="user">User</option>
             <option value="category">Category</option>
             <option value="product">Product</option>
@@ -59,8 +61,8 @@
                     <td><?= $product_row['categoryId'] ?></td>
                     <td>
                     <div class='d-flex float-right'>
-                        <a href="" class='btn btn-success mr-2'>Edit</a>
-                        <a href="" class='btn btn-danger'>Remove</a>
+                        <a href="../process_system/edit_product.php?product_id=<?=$product_row['productId']?>" class='btn btn-success mr-2'>Edit</a>
+                        <a href="../process_system/delete_product.php?product_id=<?=$product_row['productId']?>" class='btn btn-danger'>Remove</a>
                     </div>
                     </td>
                 </tr>

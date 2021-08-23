@@ -34,9 +34,6 @@
         <h2 class='text-primary'><strong>System Manager</strong> </h2>
     </div>
     <?php if($selected === 'product'): ?>
-        <div class='float-right p-4'>
-            <a href="../process_pc_page/create_pc_html.php" class='btn btn-primary mr-2'>Add Product</a>
-        </div>
         <table class="table table-bordered" style=''>
             <thead class='text-center'>
                 <tr>
@@ -81,7 +78,7 @@
                 <th scope="col">email</th>
                 <th scope="col">password</th>
                 <th scope="col">roleId</th>
-                <th scope="col">options</th>
+               
                 </tr>
             </thead>
             <tbody>
@@ -92,26 +89,17 @@
                     <td><?= $user_row['email'] ?></td>
                     <td><?= $user_row['password'] ?></td>
                     <td><?= $user_row['roleId'] ?></td>
-                    <td>
-                        <div class='d-flex float-right'>
-                            <a href="" class='btn btn-success mr-2'>Edit</a>
-                            <a href="" class='btn btn-danger'>Remove</a>
-                        </div>
-                    </td>
+                   
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>
-        <div class='float-right p-4'>
-            <a href="" class='btn btn-primary mr-2'>Add Product</a>
-        </div>
         <table class="table table-bordered">
             <thead class='text-center'>
                 <tr>
                 <th scope="col">category Id</th>
                 <th scope="col">category Name</th>
-                <th scope="col">options</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,12 +107,6 @@
                 <tr>
                     <td><?= $cate_row['categoryId'] ?></td>
                     <td><?= $cate_row['categoryName'] ?></td>
-                    <td>
-                        <div class='d-flex float-right'>
-                            <a href="" class='btn btn-success mr-2'>Edit</a>
-                            <a href="" class='btn btn-danger'>Remove</a>
-                        </div>
-                    </td>
                 </tr>
                 
             <?php endforeach; ?>
